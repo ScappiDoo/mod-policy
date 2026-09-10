@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="Which client mods are allowed on the server, what each one does, and why.">
 <meta name="robots" content="noindex">
-<title>AntiHackX Mod Policy</title>
+<title>Allowed Mods</title>
 <style>
   html { -webkit-text-size-adjust: 100%; }
   img { max-width: 100%; }
@@ -365,12 +365,12 @@
 
 <div class="page">
   <header class="masthead">
-    <p class="eyebrow">Server policy &middot; 116 client mods</p>
-    <h1>Which mods your players may install</h1>
+    <p class="eyebrow">Server rules &middot; 116 mods</p>
+    <h1>Which mods you can use here</h1>
     <p class="standfirst">
-      Every mod AntiHackX can detect, what it does, and whether it belongs on a survival server.
-      The verdicts assume a normal survival server with PvP on. On a creative or build server, half
-      of the amber rows are fine.
+      Every mod we check for, what it does, and whether you can use it. If your mod is not on
+      this list it is probably fine. If it does something you can see on this list, ask staff first
+      and save yourself the trouble.
     </p>
     <div class="tally" id="tally"></div>
   </header>
@@ -385,53 +385,51 @@
     </label>
     <div class="filters" id="filters">
       <button type="button" data-v="all" aria-pressed="true">All</button>
-      <button type="button" data-v="ban" aria-pressed="false">Ban</button>
-      <button type="button" data-v="call" aria-pressed="false">Staff call</button>
-      <button type="button" data-v="allow" aria-pressed="false">Allow</button>
+      <button type="button" data-v="ban" aria-pressed="false">Not allowed</button>
+      <button type="button" data-v="call" aria-pressed="false">Ask first</button>
+      <button type="button" data-v="allow" aria-pressed="false">Allowed</button>
     </div>
   </div>
 
   <main id="list"></main>
 
   <div class="legend">
-    <h3>How to read a verdict</h3>
+    <h3>What the three labels mean</h3>
     <dl>
       <div>
-        <dt class="t-ban">Ban</dt>
-        <dd>No honest use on a survival server. The mod exists to do something the game does not
-          let you do, or to do it while nobody is at the keyboard.</dd>
+        <dt class="t-ban">Not allowed</dt>
+        <dd>Take it out of your mods folder before you log in. These do something the game does not
+          let you do, or they play for you while you are away from the keyboard.</dd>
       </div>
       <div>
-        <dt class="t-call">Staff call</dt>
-        <dd>Fine on some servers and not others, or fine with one setting switched off. Write a
-          real rule for these. Players will argue them.</dd>
+        <dt class="t-call">Ask first</dt>
+        <dd>Some of these are fine here and some are not, and a few are fine once you turn one
+          setting off. Ask before you use one. Nobody gets in trouble for asking.</dd>
       </div>
       <div>
-        <dt class="t-allow">Allow</dt>
-        <dd>Quality of life. Most of your honest players already run several of these. Banning
-          them annoys people and catches nobody.</dd>
+        <dt class="t-allow">Allowed</dt>
+        <dd>Use them. Most people here already run a few of these and nobody minds.</dd>
       </div>
     </dl>
     <p class="group-note">
-      The number beside each row is the scan's risk weight, 0 to 20. It is how much the mod adds
-      to a player's score when it turns up, and it is not the verdict. Some mods weigh little and
-      are still banned here. The weight measures evidence. The verdict measures whether you want
-      the thing on your server.
+      The number beside each row is how much weight that mod carries if a check finds it. A high
+      number is not a ban and a low number is not permission. It only decides how closely somebody
+      looks.
     </p>
   </div>
 
   <footer class="colophon">
-    Mod list current as of 10 September 2026, checked against each mod's own release files. Mods
-    rename things between versions, so check again before you quote this at a player.
+    List updated 10 September 2026. Mods change between versions, so if something here looks
+    wrong or your mod is missing, tell staff and we will check it.
     <br><br>
-    A detection means the mod is installed. It does not mean it was used. Nothing here happens
-    automatically. Every call on this page is made by a person.
+    Finding a mod is not the same as catching somebody using it. Nothing happens automatically.
+    A person looks at every case before anything is done.
   </footer>
 </div>
 
 <script>
   const MODS = [
-    ["Cheat clients", "A full module list behind one GUI: aura, flight, x-ray, auto-crystal. None of these have a safe configuration.", [
+    ["Cheat clients", "One menu with every cheat in it: aura, flight, x-ray, auto-crystal. There is no setup of these that is allowed here.", [
       ["meteor-client", "Meteor Client", "The most installed hacked client on anarchy servers. Around 200 modules including KillAura, Freecam, X-ray and AutoCrystal.", "ban", 18],
       ["cheatutils", "CheatUtils", "X-ray, kill aura, free camera, entity outlines and auto-fish, packaged as an ordinary-looking utility mod.", "ban", 20],
       ["asteroid", "Asteroid", "A utility client. The same module set as a hacked client, without the click GUI.", "ban", 16],
@@ -450,33 +448,33 @@
       ["xenon", "Xenon", "Proximity radar. Warns you when a player comes near, through walls and terrain.", "ban", 16]
     ]],
 
-    ["Add-ons that give the client away", "None of these are cheats on their own. They are only useful once a hacked client is installed, which is what makes them worth detecting.", [
+    ["Add-ons that give the client away", "None of these are cheats on their own. They only do anything once a cheat client is already installed, so having one tells us the client is there.", [
       ["meteor-plus", "Meteor+", "Meteor add-on that puts Baritone pathing commands on the world map.", "ban", 16],
       ["meteorist", "Meteorist", "Meteor add-on aimed at non-vanilla anarchy servers.", "ban", 16],
       ["meteor-additions", "MeteorAdditions", "Meteor add-on with server-list and IP tooling.", "ban", 16],
-      ["meteor-translation-addon", "Meteor translation addon", "A community translation pack for Meteor. Harmless on its own, and impossible to have unless Meteor is installed.", "ban", 18],
+      ["meteor-translation-addon", "Meteor translation addon", "A translation pack for Meteor. Harmless by itself, and impossible to have unless Meteor is installed.", "ban", 18],
       ["meteor-i18n-yalu", "Meteor i18n support", "The second Meteor translation pack. Same implication as the first.", "ban", 18],
       ["xaeroplus", "XaeroPlus", "Add-on for Xaero's maps: extra chunk scanning and Baritone integration.", "call", 8],
       ["xaerodeck", "XaeroDeck", "Flies you to a map waypoint automatically. Direct, orbit or spiral.", "ban", 12]
     ]],
 
-    ["X-ray and world scanning", "These read the world rather than the player. No amount of watching how someone moves or clicks will catch them. Finding the mod is the only signal you get.", [
+    ["X-ray and world scanning", "These show you ores and caves through solid stone. How you move and click gives nothing away, so the mod itself is what we look for.", [
       ["advanced-xray", "Advanced XRay", "Makes stone transparent so ores and caves stand out.", "ban", 20],
       ["advanced-xray-fabric", "Advanced XRay (Fabric)", "Fabric build of the same mod.", "ban", 20],
       ["atian-xray", "Atian XRay", "Block-transparency x-ray with per-ore colouring.", "ban", 20],
       ["xray-orevision", "XRay OreVision", "X-ray with a fullbright toggle bundled in.", "ban", 18],
-      ["xray-vision-plus", "XRay Vision+", "Advertised as a legal cave assistant. It highlights ores through stone.", "ban", 14],
+      ["xray-vision-plus", "XRay Vision+", "Sold as a legal cave assistant. It highlights ores through stone, so it is x-ray.", "ban", 14],
       ["seed-xray", "Seed X-Ray", "Predicts ore positions from the world seed rather than reading blocks.", "ban", 20],
       ["seedcrackerx", "SeedCrackerX", "Works out your world seed from what it sees in game, then locates every structure, slime chunk and ore vein on the server.", "ban", 14],
       ["stashfinder", "StashFinder", "Indexes the chunks you load to find other players' bases and stashes.", "ban", 16],
       ["worlddownloader", "World Downloader", "Saves the server's world to disk as you walk around it, chests included.", "ban", 12]
     ]],
 
-    ["Combat automation", "The test is whether the mod acts for the player. Aim assist and auto-totem both do, so they sit here with the aimbots instead of with the HUD mods.", [
+    ["Combat automation", "If the mod acts for you, it is not allowed. Aim assist and auto-totem both act for you, which is why they are in this list and not in the HUD one.", [
       ["autoaim", "AutoAim", "Aimbot. Locks the crosshair onto the nearest target, with presets for how obvious to be.", "ban", 20],
-      ["motor-assistance", "Motor Assistance", "Aim assistance built for controllers and for players who need it. It is a real accessibility tool and a real advantage in a fight. Decide how you will answer before somebody asks.", "call", 4],
+      ["motor-assistance", "Motor Assistance", "Aim assistance built for controllers and for players who need it. It is a real accessibility tool and a real advantage in a fight. Ask before you use it, and say why.", "call", 4],
       ["cpvp-macros", "CPvP Macros", "One keypress fires a full crystal or anchor placement sequence.", "ban", 12],
-      ["jsmacros", "JsMacros", "A scripting engine with access to everything the client can do. Harmless in the right hands, a kill aura in the wrong ones.", "ban", 10],
+      ["jsmacros", "JsMacros", "A scripting engine that can do anything the client can do, including fight for you.", "ban", 10],
       ["autoclicker-fabric", "AutoClicker (Fabric)", "Holds and repeats clicks at a configured rate, with cooldown and shield awareness.", "ban", 16],
       ["auto-clicker-mc", "Auto Clicker (p1k0chu)", "Auto clicker with mouse and jump automation.", "ban", 16],
       ["simple-autoclicker", "Simple AutoClicker", "Named click profiles with intervals and entity-only modes.", "ban", 16],
@@ -494,7 +492,7 @@
       ["elytra-swapper", "Elytra Swapper", "Swaps elytra and chestplate on a keypress. Convenient while travelling, a real edge in a fight.", "call", 10]
     ]],
 
-    ["Reach", "One of these changes how far you can hit. The rest only draw the limit the game already enforces.", [
+    ["Reach", "One of these changes how far you can hit. The rest only draw the limit the game already has, and those are fine.", [
       ["lpctools", "LPC Tools", "Removes the reach limit outright and overrides hitbox requirements.", "ban", 18],
       ["reach-circles", "Reach Circles", "Draws a circle on the ground at your reach distance. Display only.", "allow", 4],
       ["reachping", "ReachPing", "Shows the measured distance of each hit you land.", "allow", 4],
@@ -505,14 +503,14 @@
       ["pro-placer", "Pro Placer", "Bedrock-style fast and accurate block placement and breaking.", "call", 8]
     ]],
 
-    ["Projectile aiming", "All four draw the flight path of a throw before you make it. It is not an aimbot, but on a PvP server the mod is doing part of the aiming.", [
+    ["Projectile aiming", "All four draw where a pearl or an arrow will land before you throw it. It is not an aimbot, but the mod is doing part of the aiming, so ask first.", [
       ["ptp", "Projectile Trajectory Preview", "Renders the arc of whatever you are holding.", "call", 6],
       ["trajectory-estimation", "Trajectory Estimation", "Trajectory lines with support for modded projectiles.", "call", 6],
       ["pearl-trajectories", "Pearl Trajectories", "Ender pearl arcs with trails and a landing beam.", "call", 6],
       ["trajectorys", "Trajectorys", "Configurable trajectory rendering for several item types.", "call", 6]
     ]],
 
-    ["Farming and AFK automation", "The advantage here is hours, not skill. These play the game while the player is asleep. It matters most if your server has an economy.", [
+    ["Farming and AFK automation", "These play the game while you are asleep. The problem is not skill, it is that you are earning while everyone else has to be at the keyboard.", [
       ["antiafk", "AntiAFK", "Keeps you from being kicked for inactivity, so a farm keeps running.", "ban", 8],
       ["afkfish", "AFK Fish", "Fishes for you while you are away from the keyboard.", "ban", 10],
       ["autofish-plus", "AutoFish+", "Automatic recasting with rod protection.", "ban", 10],
@@ -521,7 +519,7 @@
       ["autosorter", "AutoSorter", "Sorts a chest with one keypress. Does nothing you could not do by hand.", "allow", 2]
     ]],
 
-    ["Building and schematics", "The schematic mods are behind every large build project on any server. The printers are the exception. They place the blocks for you.", [
+    ["Building and schematics", "Schematic mods are fine and most builders here use them. Printers are the exception, because they place the blocks for you.", [
       ["litematica", "Litematica", "Schematic ghost overlay. The standard tool for building anything large.", "allow", 0],
       ["syncmatica", "Syncmatica", "Shares schematic placements between players on the server.", "allow", 2],
       ["malilib", "MaLiLib", "Shared library behind Litematica, Tweakeroo and MiniHUD. No features of its own.", "allow", 0],
@@ -531,7 +529,7 @@
       ["eclipses-tweakeroo", "Eclipse's Tweakeroo Additions", "Extra tweaks on top of Tweakeroo, same mixed bag.", "call", 6]
     ]],
 
-    ["Inventory and tools", "Ordinary quality of life. All of these save clicks a player would otherwise make by hand.", [
+    ["Inventory and tools", "Ordinary convenience. All of these just save you clicks you would make by hand anyway.", [
       ["itemscroller", "Item Scroller", "Move stacks by dragging and scrolling instead of clicking each one.", "allow", 0],
       ["inventory-profiles-next", "Inventory Profiles Next", "Sorting, locked slots and inventory profiles.", "allow", 0],
       ["chest-tracker", "Chest Tracker", "Remembers what was in the chests you have already opened.", "allow", 8],
@@ -540,7 +538,7 @@
       ["autotools", "AutoTools", "Tool switching with a silk-touch preference key.", "allow", 8]
     ]],
 
-    ["Camera and freecam", "A freecam detaches the camera and flies it through walls. On a build server that is a tripod. On a survival server it is a way to look inside somebody else's base from your own.", [
+    ["Camera and freecam", "A freecam flies your camera away from your body and through walls. That means looking inside somebody else's base without going there, which is why it is out.", [
       ["freecam", "Freecam", "The most installed freecam. Fly the camera anywhere, including through terrain.", "ban", 12],
       ["legacy-freecam", "LegacyFreecam", "Freecam fork without the features Modrinth objected to.", "ban", 12],
       ["camera-enhancements", "Camera Enhancements", "Freecam, freelook and camera tuning in one mod.", "ban", 12],
@@ -549,20 +547,20 @@
       ["easy-freecam", "Easy Freecam", "One-key freecam that disables itself when you take damage.", "ban", 12],
       ["afkz-freecam", "Afkz Freecam", "Freecam with tripod placement.", "ban", 12],
       ["spectator-freecam", "Spectator Freecam", "Minimal freecam toggle.", "ban", 12],
-      ["fair-freecam", "FairFreecam", "Freecam that claims to restrict itself on servers. Check that yourself before you trust it.", "ban", 8],
+      ["fair-freecam", "FairFreecam", "Freecam that says it restricts itself on servers. We do not take its word for that.", "ban", 8],
       ["xcam-freecam", "XCam Freecam", "Freecam with a fullbright option attached.", "ban", 8],
       ["builders-freecam", "Builder's Freecam", "Freecam aimed at builders, with collision options. Reasonable on a creative or build server.", "call", 8],
       ["fpv-freecam", "FPV Freecam", "Drone-style camera for cinematics and video.", "call", 8]
     ]],
 
-    ["Maps and navigation", "The map itself is fine. The entity radar is the problem, and it is a checkbox inside the mod rather than a separate mod. Write your rule about the setting, not the install.", [
+    ["Maps and navigation", "The map is fine and you can keep it. The entity radar is not, because it shows players through terrain. It is a checkbox inside the mod. Turn it off.", [
       ["xaeros-minimap", "Xaero's Minimap", "Minimap with waypoints and an optional entity radar.", "call", 4],
       ["xaeros-world-map", "Xaero's World Map", "Full map of everywhere you have walked.", "call", 2],
       ["journeymap", "JourneyMap", "Minimap and full world map with mob and player radar.", "call", 4],
       ["bobby", "Bobby", "Keeps chunks you have already loaded, so your render distance looks further than the server's.", "allow", 0]
     ]],
 
-    ["Vision and rendering", "Fullbright removes the dark. Whether that ruins caving or just makes it playable depends on who you ask. Almost every server allows it, and about a dozen mods do it.", [
+    ["Vision and rendering", "Fullbright removes the dark. It is allowed here. About a dozen mods do the same thing, so use whichever one you like.", [
       ["gamma-utils", "Gamma Utils", "Brightness and night vision control, the most installed of the family.", "allow", 3],
       ["full-brightness-toggle", "Full Brightness Toggle", "One key, maximum brightness.", "allow", 3],
       ["boosted-brightness", "Boosted Brightness", "Brightness presets on number keys.", "allow", 3],
@@ -578,19 +576,19 @@
       ["neat", "Neat", "Health bars above mobs and players.", "allow", 2]
     ]],
 
-    ["Zoom", "Optifine had zoom for a decade, so players treat it as vanilla. Banning it is a fight you will lose.", [
+    ["Zoom", "Zoom has been around since Optifine and everyone treats it as part of the game. Use any of them.", [
       ["zoomify", "Zoomify", "Smooth configurable zoom.", "allow", 0],
       ["zume", "Zume", "Zoom with scroll-wheel levels.", "allow", 0],
       ["ok-zoomer", "Ok Zoomer", "Zoom with several transition styles.", "allow", 0],
       ["logical-zoom", "Logical Zoom", "Minimal zoom keybind.", "allow", 0]
     ]],
 
-    ["HUD and information", "One entry, and it is the awkward one. MiniHUD shows you things the game hides on purpose.", [
+    ["HUD and information", "One entry, and it is the awkward one. MiniHUD shows things the game hides on purpose, like slime chunks and spawn spheres.", [
       ["minihud", "MiniHUD", "Debug overlays: light levels, slime chunks, spawn spheres, structure bounds.", "call", 0]
     ]]
   ];
 
-  const LABEL = { ban: "Ban", call: "Staff call", allow: "Allow" };
+  const LABEL = { ban: "Not allowed", call: "Ask first", allow: "Allowed" };
   const list = document.getElementById("list");
   const tally = document.getElementById("tally");
   const q = document.getElementById("q");
