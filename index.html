@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Which client mods are allowed on the server, what each one does, and why.">
+<meta name="robots" content="noindex">
+<title>AntiHackX Mod Policy</title>
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<style>
+  :root {
+    --ground: #eef1ee;
+    --surface: #ffffff;
+    --surface-2: #e6eae6;
+    --line: #d2d9d3;
+    --line-soft: #e2e7e2;
+    --text: #171d1a;
+    --text-2: #4e5a54;
+    --text-3: #77837c;
+    --ban: #a8291a;
+    --ban-bg: #f7e6e2;
+    --call: #8a5a0c;
+    --call-bg: #f8eddb;
+    --allow: #2f6b3d;
+    --allow-bg: #e2eee3;
+    --rule: #b8c2ba;
+    --focus: #1d5c8f;
+    --shadow: 0 1px 2px rgba(23, 29, 26, .06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0f1412;
+      --surface: #161c19;
+      --surface-2: #1d2421;
+      --line: #2a332e;
+      --line-soft: #222a26;
+      --text: #e3e9e4;
+      --text-2: #a3b0a8;
+      --text-3: #7d8a83;
+      --ban: #f08670;
+      --ban-bg: #341a15;
+      --call: #e0a850;
+      --call-bg: #2e2314;
+      --allow: #7bc088;
+      --allow-bg: #16291b;
+      --rule: #35403a;
+      --focus: #74b3e8;
+      --shadow: none;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0f1412;
+    --surface: #161c19;
+    --surface-2: #1d2421;
+    --line: #2a332e;
+    --line-soft: #222a26;
+    --text: #e3e9e4;
+    --text-2: #a3b0a8;
+    --text-3: #7d8a83;
+    --ban: #f08670;
+    --ban-bg: #341a15;
+    --call: #e0a850;
+    --call-bg: #2e2314;
+    --allow: #7bc088;
+    --allow-bg: #16291b;
+    --rule: #35403a;
+    --focus: #74b3e8;
+    --shadow: none;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font: 400 16px/1.55 Verdana, Geneva, Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  header.masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 22px;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .eyebrow {
+    font: 600 12px/1 Consolas, "Courier New", Courier, monospace;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    max-width: 66ch;
+    color: var(--text-2);
+    font-size: 17px;
+    margin: 0;
+  }
+
+  .tally {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .tally-item {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    padding: 6px 12px 6px 10px;
+    border-radius: 2px;
+    border-left: 3px solid currentColor;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .tally-item .n {
+    font: 600 18px/1 Consolas, "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tally-item .l {
+    font-size: 14px;
+    color: var(--text-2);
+  }
+
+  .t-ban { color: var(--ban); }
+  .t-call { color: var(--call); }
+  .t-allow { color: var(--allow); }
+
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 14px 0;
+    margin-bottom: 6px;
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .search {
+    flex: 1 1 260px;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+  }
+
+  .search input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font: 400 15px/1.3 Verdana, Geneva, Arial, sans-serif;
+    outline: none;
+  }
+
+  .search svg { flex: none; color: var(--text-3); }
+
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .filters button {
+    font: 600 13px/1 Verdana, Geneva, Arial, sans-serif;
+    padding: 9px 13px;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text-2);
+    cursor: pointer;
+  }
+
+  .filters button[aria-pressed="true"] {
+    background: var(--text);
+    border-color: var(--text);
+    color: var(--ground);
+  }
+
+  .filters button:focus-visible,
+  .search:focus-within,
+  a:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  section.group { margin-top: 34px; }
+
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .group-head h2 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -.01em;
+    margin: 0;
+  }
+
+  .group-head .count {
+    font: 400 13px/1 Consolas, "Courier New", Courier, monospace;
+    color: var(--text-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .group-note {
+    margin: 8px 0 0;
+    font-size: 15px;
+    color: var(--text-2);
+    max-width: 72ch;
+  }
+
+  .rows { display: flex; flex-direction: column; }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(190px, 1.1fr) minmax(0, 2.4fr) 62px 108px;
+    gap: 16px;
+    align-items: baseline;
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .row:hover { background: var(--surface); }
+
+  .name { font-weight: 600; }
+
+  .id {
+    display: block;
+    font: 400 12px/1.4 Consolas, "Courier New", Courier, monospace;
+    color: var(--text-3);
+    word-break: break-all;
+  }
+
+  .what { color: var(--text-2); font-size: 15px; }
+
+  .what em { color: var(--text); font-style: italic; }
+
+  .risk {
+    font: 600 14px/1 Consolas, "Courier New", Courier, monospace;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--text-3);
+  }
+
+  .verdict {
+    justify-self: start;
+    font: 600 12px/1 Consolas, "Courier New", Courier, monospace;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 6px 9px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .v-ban { color: var(--ban); background: var(--ban-bg); }
+  .v-call { color: var(--call); background: var(--call-bg); }
+  .v-allow { color: var(--allow); background: var(--allow-bg); }
+
+  .empty {
+    padding: 40px 0;
+    color: var(--text-3);
+    font-size: 15px;
+  }
+
+  .legend {
+    margin-top: 34px;
+    padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .legend h3 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .legend dl { margin: 0; display: grid; gap: 10px; }
+
+  .legend dt {
+    font: 600 12px/1 Consolas, "Courier New", Courier, monospace;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .legend dd { margin: 0; color: var(--text-2); font-size: 15px; max-width: 70ch; }
+
+  footer.colophon {
+    margin-top: 46px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--text-3);
+    font-size: 14px;
+    max-width: 74ch;
+  }
+
+  footer.colophon code {
+    font: 400 13px/1 Consolas, "Courier New", Courier, monospace;
+    color: var(--text-2);
+  }
+
+  @media (max-width: 720px) {
+    .page { padding: 28px 16px 60px; }
+    .row {
+      grid-template-columns: 1fr auto;
+      grid-template-areas: "name verdict" "what what";
+      row-gap: 6px;
+    }
+    .row > .name-cell { grid-area: name; }
+    .row > .what { grid-area: what; }
+    .row > .verdict { grid-area: verdict; justify-self: end; }
+    .row > .risk { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <p class="eyebrow">Server policy &middot; 116 client mods</p>
+    <h1>Which mods your players may install</h1>
+    <p class="standfirst">
+      Every mod AntiHackX can detect, what it actually does, and whether it belongs on a survival
+      server. Verdicts are a starting point written for a normal survival server with PvP on — a
+      creative or build server should read half of the amber rows as green.
+    </p>
+    <div class="tally" id="tally"></div>
+  </header>
+
+  <div class="controls">
+    <label class="search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.6"></circle>
+        <path d="M11 11l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+      </svg>
+      <input id="q" type="search" placeholder="Search a mod, an id, or what it does" aria-label="Search mods">
+    </label>
+    <div class="filters" id="filters">
+      <button type="button" data-v="all" aria-pressed="true">All</button>
+      <button type="button" data-v="ban" aria-pressed="false">Ban</button>
+      <button type="button" data-v="call" aria-pressed="false">Staff call</button>
+      <button type="button" data-v="allow" aria-pressed="false">Allow</button>
+    </div>
+  </div>
+
+  <main id="list"></main>
+
+  <div class="legend">
+    <h3>How to read a verdict</h3>
+    <dl>
+      <div>
+        <dt class="t-ban">Ban</dt>
+        <dd>No honest use on a survival server. The mod's whole purpose is to do something the game
+          does not let you do, or to do it while you are not at the keyboard.</dd>
+      </div>
+      <div>
+        <dt class="t-call">Staff call</dt>
+        <dd>Legitimate on some servers and not others, or fine with one setting switched off. These
+          are the rows worth writing an actual rule about, because players will argue them.</dd>
+      </div>
+      <div>
+        <dt class="t-allow">Allow</dt>
+        <dd>Quality of life. Banning these costs you goodwill and gains you nothing — most of your
+          honest players already run several.</dd>
+      </div>
+    </dl>
+    <p class="group-note">
+      The number beside each row is the scan's risk weight, 0 to 20 — how much that mod contributes
+      to a player's score when it turns up. It is not the verdict. Some mods weigh little and are
+      still banned here, because the weight measures evidence and the verdict measures whether you
+      want the thing on your server at all.
+    </p>
+  </div>
+
+  <footer class="colophon">
+    Mod list current as of 10 September 2026. Each entry was checked against the mod's own release
+    files, so the behaviour described here is the current version rather than an older one — keys
+    and features move between releases, so re-check before quoting this at a player.
+    <br><br>
+    A detection means the mod is installed. It does not mean it was used, and on its own it is not
+    grounds for anything. Nothing here is enforced automatically; every one of these calls is made
+    by a person.
+  </footer>
+</div>
+
+<script>
+  const MODS = [
+    ["Cheat clients", "A full module list behind one GUI: aura, flight, x-ray, auto-crystal. There is no configuration of these that is safe to allow.", [
+      ["meteor-client", "Meteor Client", "The most installed hacked client on anarchy servers. Around 200 modules including KillAura, Freecam, X-ray and AutoCrystal.", "ban", 18],
+      ["cheatutils", "CheatUtils", "X-ray, kill aura, free camera, entity outlines and auto-fish, packaged as an ordinary-looking utility mod.", "ban", 20],
+      ["asteroid", "Asteroid", "A utility client — the module set of a hacked client with the click GUI filed off.", "ban", 16],
+      ["hamhacks", "HamHacks", "Fabric hacked client. Flight with several modes, aura, ESP, movement modules.", "ban", 20],
+      ["gavinsmod", "Gavin's Extensible Mod", "Draws ESP boxes and tracer lines to entities through terrain, plus combat and movement modules.", "ban", 18],
+      ["ravex", "RaveX", "Kill aura, trigger bot, anti-knockback and automatic mace swapping.", "ban", 20],
+      ["tangerine", "Tangerine", "Modular hacked client with its own keybind-driven interface.", "ban", 18],
+      ["thunderhack", "ThunderHack / ShadeHack", "Anarchy combat client: aura, auto-crystal, auto-anchor, auto-anvil, anti-bot. ShadeHack is the same code under a different name.", "ban", 20],
+      ["shadowclient", "ShadowClient", "Tracers, auto-fish, anti-knockback, auto-respawn and a client-side timer.", "ban", 20],
+      ["bloodic", "Bloodic Client", "Flight, spider climb, auto-sprint and fullbright behind a module menu.", "ban", 20],
+      ["progreso", "Progreso", "Module client that announces players entering and leaving your visual range.", "ban", 20],
+      ["combatant-client", "Combatant Client", "Crystal-PvP client with auto-armor and several thousand configuration strings.", "ban", 20],
+      ["lumina-client", "Lumina Client", "Click-GUI hacked client.", "ban", 20],
+      ["sentinel-client", "Sentinel Client", "Freecam, TNT fuse timers and hitbox tinting in one menu.", "ban", 16],
+      ["fireclient", "FireClient SMP", "Module client marketed for SMPs: fullbright, reach display and more.", "ban", 14],
+      ["xenon", "Xenon", "Proximity radar. Warns you when a player comes near, through walls and terrain.", "ban", 16]
+    ]],
+
+    ["Add-ons that give the client away", "None of these are cheats by themselves. All of them are only useful if a hacked client is already installed, which is exactly what makes them worth detecting.", [
+      ["meteor-plus", "Meteor+", "Meteor add-on that puts Baritone pathing commands on the world map.", "ban", 16],
+      ["meteorist", "Meteorist", "Meteor add-on aimed at non-vanilla anarchy servers.", "ban", 16],
+      ["meteor-additions", "MeteorAdditions", "Meteor add-on with server-list and IP tooling.", "ban", 16],
+      ["meteor-translation-addon", "Meteor translation addon", "A community translation pack <em>for</em> Meteor. Harmless on its own, and impossible to have unless Meteor is installed.", "ban", 18],
+      ["meteor-i18n-yalu", "Meteor i18n support", "The second Meteor translation pack. Same implication as the first.", "ban", 18],
+      ["xaeroplus", "XaeroPlus", "Add-on for Xaero's maps: extra chunk scanning and Baritone integration.", "call", 8],
+      ["xaerodeck", "XaeroDeck", "Flies you to a map waypoint automatically — orbit, spiral, or direct.", "ban", 12]
+    ]],
+
+    ["X-ray and world scanning", "These read the world rather than the player, which is why nothing about movement or clicking will ever catch them. Detecting the mod is the only signal you get.", [
+      ["advanced-xray", "Advanced XRay", "Makes stone transparent so ores and caves stand out.", "ban", 20],
+      ["advanced-xray-fabric", "Advanced XRay (Fabric)", "Fabric build of the same mod.", "ban", 20],
+      ["atian-xray", "Atian XRay", "Block-transparency x-ray with per-ore colouring.", "ban", 20],
+      ["xray-orevision", "XRay OreVision", "X-ray with a fullbright toggle bundled in.", "ban", 18],
+      ["xray-vision-plus", "XRay Vision+", "Marketed as a legal cave assistant. It highlights ores through stone.", "ban", 14],
+      ["seed-xray", "Seed X-Ray", "Predicts ore positions from the world seed rather than reading blocks.", "ban", 20],
+      ["seedcrackerx", "SeedCrackerX", "Recovers your world seed from in-game observations, then locates every structure, slime chunk and ore vein on the server.", "ban", 14],
+      ["stashfinder", "StashFinder", "Indexes the chunks you load to find other players' bases and stashes.", "ban", 16],
+      ["worlddownloader", "World Downloader", "Saves the server's world to disk as you walk around it, chests included.", "ban", 12]
+    ]],
+
+    ["Combat automation", "The line here is simple: does the mod act on the player's behalf. Aim assistance and auto-totem both do, which is why they sit beside aimbots rather than beside HUD mods.", [
+      ["autoaim", "AutoAim", "Aimbot. Locks the crosshair onto the nearest target, with presets for how obvious to be.", "ban", 20],
+      ["motor-assistance", "Motor Assistance", "Aim assistance built for controller and accessibility use. Genuinely an accessibility tool, and genuinely an advantage in a fight — decide in advance how you will answer the request.", "call", 4],
+      ["cpvp-macros", "CPvP Macros", "One keypress fires a full crystal or anchor placement sequence.", "ban", 12],
+      ["jsmacros", "JsMacros", "A scripting engine with access to everything the client can do. Benign in the right hands and a kill aura in the wrong ones.", "ban", 10],
+      ["autoclicker-fabric", "AutoClicker (Fabric)", "Holds and repeats clicks at a configured rate, with cooldown and shield awareness.", "ban", 16],
+      ["auto-clicker-mc", "Auto Clicker (p1k0chu)", "Auto clicker with mouse and jump automation.", "ban", 16],
+      ["simple-autoclicker", "Simple AutoClicker", "Named click profiles with intervals and entity-only modes.", "ban", 16],
+      ["enthusia-autoclicker", "Enthusia AutoClicker", "Separate left and right click automation.", "ban", 16],
+      ["adv-autoclicker", "Advanced AutoClicker", "Menu-driven auto clicker.", "ban", 16],
+      ["autoclicker-profiles", "AutoClicker (profiles)", "Auto clicker with switchable profiles bound to keys.", "ban", 16],
+      ["autoclicker-rinf", "AutoClicker Rinf", "Left and right auto clicking with a HUD.", "ban", 16],
+      ["sillys-auto-totem", "Silly's Auto Totem", "Puts a new totem in your off-hand the instant the last one pops.", "ban", 18],
+      ["auto-totem-plus", "Auto Totem+", "Same behaviour, configurable tick delay.", "ban", 18],
+      ["autototem-plus-screen", "Auto Totem+ (settings screen)", "The configuration half of Auto Totem+.", "ban", 18],
+      ["auto-totem-light", "Auto Totem Light", "Totem swapping plus smart off-hand handling.", "ban", 18],
+      ["simple-auto-totem", "Simple Auto Totem", "Minimal auto-totem with a toggle key.", "ban", 18],
+      ["auto-use-totem", "Auto Use Totem", "Auto-totem, one keybind.", "ban", 18],
+      ["autototem-mod", "AutoTotem", "Auto-totem with a settings menu and chat feedback.", "ban", 18],
+      ["elytra-swapper", "Elytra Swapper", "Swaps elytra and chestplate on a keypress. Convenience while travelling, a real edge mid-fight.", "call", 10]
+    ]],
+
+    ["Reach", "Reach mods split cleanly. One of them changes how far you can hit; the rest only draw what the vanilla limit already is.", [
+      ["lpctools", "LPC Tools", "Removes the reach limit outright and overrides hitbox requirements.", "ban", 18],
+      ["reach-circles", "Reach Circles", "Draws a circle on the ground at your reach distance. Display only.", "allow", 4],
+      ["reachping", "ReachPing", "Shows the measured distance of each hit you land.", "allow", 4],
+      ["bridging-mod", "Bridging Mod", "Places blocks behind you while walking backwards over a gap, the way Bedrock does.", "call", 12],
+      ["reacharound", "Reacharound", "The same reach-around placement, a different mod.", "call", 12],
+      ["better-bridging", "Better Bridging", "Bridging aid with a placement brace and a cycle key.", "call", 10],
+      ["reach-behind", "Reach Behind", "Lets you click through decorations to the block behind them.", "call", 6],
+      ["pro-placer", "Pro Placer", "Bedrock-style fast and accurate block placement and breaking.", "call", 8]
+    ]],
+
+    ["Projectile aiming", "All four draw the flight path of a throw before you make it. Nobody would call it an aimbot; on a PvP server it is still the pearl and the bow doing part of the aiming.", [
+      ["ptp", "Projectile Trajectory Preview", "Renders the arc of whatever you are holding.", "call", 6],
+      ["trajectory-estimation", "Trajectory Estimation", "Trajectory lines with support for modded projectiles.", "call", 6],
+      ["pearl-trajectories", "Pearl Trajectories", "Ender pearl arcs with trails and a landing beam.", "call", 6],
+      ["trajectorys", "Trajectorys", "Configurable trajectory rendering for several item types.", "call", 6]
+    ]],
+
+    ["Farming and AFK automation", "The advantage is not skill, it is hours. These play the game while the player is asleep, which matters most on servers with an economy.", [
+      ["antiafk", "AntiAFK", "Keeps you from being kicked for inactivity, so a farm keeps running.", "ban", 8],
+      ["afkfish", "AFK Fish", "Fishes for you while you are away from the keyboard.", "ban", 10],
+      ["autofish-plus", "AutoFish+", "Automatic recasting with rod protection.", "ban", 10],
+      ["autofishbox", "AutoFishBox", "Client-side auto-fishing.", "ban", 10],
+      ["autofishing-deluxe", "AutoFishing Deluxe", "Auto-fishing with failsafes for when a GUI opens.", "ban", 10],
+      ["autosorter", "AutoSorter", "Sorts a chest with one keypress. Does nothing you could not do by hand.", "allow", 2]
+    ]],
+
+    ["Building and schematics", "The schematic mods are the backbone of every large build project. Only the printers cross the line, and they cross it completely: they place the blocks for you.", [
+      ["litematica", "Litematica", "Schematic ghost overlay. The standard tool for building anything large.", "allow", 0],
+      ["syncmatica", "Syncmatica", "Shares schematic placements between players on the server.", "allow", 2],
+      ["malilib", "MaLiLib", "Shared library behind Litematica, Tweakeroo and MiniHUD. No features of its own.", "allow", 0],
+      ["litematica-printer", "Litematica Printer", "Places the schematic's blocks for you, automatically.", "ban", 16],
+      ["litematica-printer-hana", "Litematica Printer (Hana fork)", "A maintained fork of the printer. Same behaviour.", "ban", 16],
+      ["tweakeroo", "Tweakeroo", "A large tweak collection. Most are cosmetic; a few — fast placement, free camera, hand restock — are not.", "call", 0],
+      ["eclipses-tweakeroo", "Eclipse's Tweakeroo Additions", "Extra tweaks on top of Tweakeroo, same mixed bag.", "call", 6]
+    ]],
+
+    ["Inventory and tools", "Ordinary quality of life. Every one of these saves clicks a player would otherwise make by hand.", [
+      ["itemscroller", "Item Scroller", "Move stacks by dragging and scrolling instead of clicking each one.", "allow", 0],
+      ["inventory-profiles-next", "Inventory Profiles Next", "Sorting, locked slots and inventory profiles.", "allow", 0],
+      ["chest-tracker", "Chest Tracker", "Remembers what was in the chests you have already opened.", "allow", 8],
+      ["autoswitch", "AutoSwitch", "Switches to the right tool for the block you are hitting.", "allow", 2],
+      ["auto-tool", "Auto Tool", "The same idea, a different mod.", "allow", 2],
+      ["autotools", "AutoTools", "Tool switching with a silk-touch preference key.", "allow", 8]
+    ]],
+
+    ["Camera and freecam", "A freecam detaches the camera and flies it through walls. On a build server that is a tripod; on a survival server it is a way to look inside someone's base without leaving your own.", [
+      ["freecam", "Freecam", "The most installed freecam. Fly the camera anywhere, including through terrain.", "ban", 12],
+      ["legacy-freecam", "LegacyFreecam", "Freecam fork without the features Modrinth objected to.", "ban", 12],
+      ["camera-enhancements", "Camera Enhancements", "Freecam, freelook and camera tuning in one mod.", "ban", 12],
+      ["cameratweaks", "CameraTweaks", "Freecam, fullbright and freelook together.", "ban", 14],
+      ["zergatul-freecam", "FreeCam (Zergatul)", "Freecam with camera lock, eye lock and recorded paths.", "ban", 12],
+      ["easy-freecam", "Easy Freecam", "One-key freecam that disables itself when you take damage.", "ban", 12],
+      ["afkz-freecam", "Afkz Freecam", "Freecam with tripod placement.", "ban", 12],
+      ["spectator-freecam", "Spectator Freecam", "Minimal freecam toggle.", "ban", 12],
+      ["fair-freecam", "FairFreecam", "Freecam that claims to restrict itself on servers. Verify that claim before trusting it.", "ban", 8],
+      ["xcam-freecam", "XCam Freecam", "Freecam with a fullbright option attached.", "ban", 8],
+      ["builders-freecam", "Builder's Freecam", "Freecam aimed at builders, with collision options. Reasonable on a creative or build server.", "call", 8],
+      ["fpv-freecam", "FPV Freecam", "Drone-style camera for cinematics and video.", "call", 8]
+    ]],
+
+    ["Maps and navigation", "The map itself is fine. The entity radar is the problem — it shows players through terrain, and it is a checkbox, not a separate mod. Write your rule about the setting, not the install.", [
+      ["xaeros-minimap", "Xaero's Minimap", "Minimap with waypoints and an optional entity radar.", "call", 4],
+      ["xaeros-world-map", "Xaero's World Map", "Full map of everywhere you have walked.", "call", 2],
+      ["journeymap", "JourneyMap", "Minimap and full world map with mob and player radar.", "call", 4],
+      ["bobby", "Bobby", "Keeps chunks you have already loaded so your render distance looks further than the server's.", "allow", 0]
+    ]],
+
+    ["Vision and rendering", "Fullbright removes the dark, which is either the point of caving or an accessibility fix, depending on who you ask. Almost every server allows it; nearly a dozen mods do it.", [
+      ["gamma-utils", "Gamma Utils", "Brightness and night vision control, the most installed of the family.", "allow", 3],
+      ["full-brightness-toggle", "Full Brightness Toggle", "One key, maximum brightness.", "allow", 3],
+      ["boosted-brightness", "Boosted Brightness", "Brightness presets on number keys.", "allow", 3],
+      ["fullbright", "Fullbright", "Toggle and strength command.", "allow", 3],
+      ["devjg-fullbright", "DevJG's FullBright", "Brightness cycling with transitions.", "allow", 3],
+      ["optimized-fullbright", "Optimized Fullbright", "Performance-minded fullbright.", "allow", 3],
+      ["true-fullbright", "True Fullbright", "Gamma override with categories.", "allow", 3],
+      ["dynamic-fullbright", "Dynamic Fullbright", "Brightens only what needs it rather than everything.", "allow", 3],
+      ["simple-fullbright", "Simple Fullbright", "A toggle and nothing else.", "allow", 3],
+      ["fullbright-utils", "Fullbright Utils", "Brightness and night-vision keys.", "allow", 3],
+      ["holo-utils", "No Fog + Fullbright", "Fullbright with fog removal. The fog half extends how far you can see outdoors.", "allow", 3],
+      ["prettier-hitboxes", "Prettier Hitboxes", "Recolours the hitbox display you can already turn on with F3+B.", "allow", 2],
+      ["neat", "Neat", "Health bars above mobs and players.", "allow", 2]
+    ]],
+
+    ["Zoom", "Optifine had it for a decade, so players treat it as vanilla. Banning zoom is a fight you will lose and should not pick.", [
+      ["zoomify", "Zoomify", "Smooth configurable zoom.", "allow", 0],
+      ["zume", "Zume", "Zoom with scroll-wheel levels.", "allow", 0],
+      ["ok-zoomer", "Ok Zoomer", "Zoom with several transition styles.", "allow", 0],
+      ["logical-zoom", "Logical Zoom", "Minimal zoom keybind.", "allow", 0]
+    ]],
+
+    ["HUD and information", "One entry, and it is the awkward one: MiniHUD tells you things the game deliberately hides.", [
+      ["minihud", "MiniHUD", "Debug overlays: light levels, slime chunks, spawn spheres, structure bounds.", "call", 0]
+    ]]
+  ];
+
+  const LABEL = { ban: "Ban", call: "Staff call", allow: "Allow" };
+  const list = document.getElementById("list");
+  const tally = document.getElementById("tally");
+  const q = document.getElementById("q");
+  const filters = document.getElementById("filters");
+  let verdict = "all";
+
+  const counts = { ban: 0, call: 0, allow: 0 };
+  MODS.forEach(([, , rows]) => rows.forEach(r => counts[r[3]]++));
+  tally.innerHTML = ["ban", "call", "allow"].map(v =>
+    `<span class="tally-item t-${v}"><span class="n">${counts[v]}</span><span class="l">${LABEL[v]}</span></span>`
+  ).join("");
+
+  function render() {
+    const needle = q.value.trim().toLowerCase();
+    let shown = 0;
+    const html = MODS.map(([group, note, rows]) => {
+      const keep = rows.filter(([id, name, what, v]) =>
+        (verdict === "all" || v === verdict) &&
+        (!needle || (id + " " + name + " " + what).toLowerCase().includes(needle)));
+      if (!keep.length) return "";
+      shown += keep.length;
+      return `<section class="group">
+        <div class="group-head"><h2>${group}</h2><span class="count">${keep.length} of ${rows.length}</span></div>
+        <p class="group-note">${note}</p>
+        <div class="rows">${keep.map(([id, name, what, v, risk]) => `
+          <div class="row">
+            <div class="name-cell"><span class="name">${name}</span><span class="id">${id}</span></div>
+            <div class="what">${what}</div>
+            <div class="risk">${risk.toFixed(1)}</div>
+            <span class="verdict v-${v}">${LABEL[v]}</span>
+          </div>`).join("")}</div>
+      </section>`;
+    }).join("");
+
+    list.innerHTML = html || `<p class="empty">Nothing matches that. Try a mod name, an id like <code>seedcrackerx</code>, or a word from what it does.</p>`;
+  }
+
+  q.addEventListener("input", render);
+  filters.addEventListener("click", event => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    verdict = button.dataset.v;
+    [...filters.querySelectorAll("button")].forEach(b =>
+      b.setAttribute("aria-pressed", String(b === button)));
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>
