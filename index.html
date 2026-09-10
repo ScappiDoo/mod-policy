@@ -365,7 +365,7 @@
 
 <div class="page">
   <header class="masthead">
-    <p class="eyebrow">Server rules &middot; 116 mods</p>
+    <p class="eyebrow">Server rules &middot; 149 mods</p>
     <h1>Which mods you can use here</h1>
     <p class="standfirst">
       Every mod we check for, what it does, and whether you can use it. If your mod is not on
@@ -420,7 +420,8 @@
 
   <footer class="colophon">
     List updated 10 September 2026. Mods change between versions, so if something here looks
-    wrong or your mod is missing, tell staff and we will check it.
+    wrong or your mod is missing, tell staff and we will check it. The health bar and HUD mods
+    were added after somebody asked, so asking works.
     <br><br>
     Finding a mod is not the same as catching somebody using it. Nothing happens automatically.
     A person looks at every case before anything is done.
@@ -490,6 +491,26 @@
       ["elytra-swapper", "Elytra Swapper", "Swaps elytra and chestplate on a keypress. Convenient while travelling, a real edge in a fight.", "call", 10]
     ]],
 
+    ["Health bars and player information", "This is the group worth reading properly. A mod that puts another player\'s remaining hearts over their head answers the question a fight turns on, which is whether to commit. Mob health bars do not do that and are fine. Your own health, armour and food are fine. Everything in the first block below shows you other players.", [
+      ["player-health-indicators", "Player Health Indicators", "Hearts above every player showing exactly how much health they have left. Also covers the invisible-support fork, which uses the same keys.", "call", 8],
+      ["simple-health-indicator", "Simple Health Indicator", "A health bar over each player\'s head.", "call", 8],
+      ["health-indicators-binds", "Health Indicators", "Animated HP bar above players.", "call", 8],
+      ["heart-indicator", "Heart Indicator", "Shows player health as hearts above the head.", "call", 8],
+      ["new-health-bars", "New Health Bars", "Health for every mob and player, in the world and in the HUD.", "call", 8],
+      ["provis-health-bars", "Provi\'s Health Bars", "Health bars and damage numbers, in-world and on the HUD.", "call", 8],
+      ["namepain", "Name Pain", "Does not draw a bar. It turns the nameplate red as the player loses health, which reads at a glance from further away than a bar does.", "call", 8],
+      ["halohud", "Halo HUD", "A ring around your crosshair showing the health of whoever you are looking at.", "call", 8],
+      ["entity-status-bars", "TSLAT Entity Status", "Health, armour and effects for whatever you are looking at, in the HUD and above the entity.", "call", 6],
+      ["asteorbar", "AsteorBar", "Reworked player status HUD that also draws mob health.", "call", 6],
+      ["tiertagger", "TierTagger", "Puts the other player\'s ranked PvP tier in their nametag, pulled from MCTiers. You know how good they are before the first hit.", "call", 6],
+      ["tiertests", "TierTests", "The same idea with a lookup key for the nearest player or the last one you hit.", "call", 6],
+      ["mob-health-indicators", "Mob Health Indicators", "Health bars above mobs. Mobs only.", "allow", 2],
+      ["ydms-mob-health-bar", "YDM\'s Mob Health Bar", "Health bars above mobs, with several styles.", "allow", 2],
+      ["fancy-health-bar", "FancyHealthBar", "Restyles your own health bar.", "allow", 0],
+      ["health-warning", "Health Indicator", "Warns you when your own health drops below a number you set.", "allow", 0],
+      ["combat-sense", "CombatSense", "Hit and kill markers, camera punch. Feedback on hits you already landed.", "allow", 2]
+    ]],
+
     ["Reach", "One of these changes how far you can hit. The rest only draw the limit the game already has, and those are fine.", [
       ["lpctools", "LPC Tools", "Removes the reach limit outright and overrides hitbox requirements.", "ban", 18],
       ["reach-circles", "Reach Circles", "Draws a circle on the ground at your reach distance. Display only.", "allow", 4],
@@ -498,7 +519,9 @@
       ["reacharound", "Reacharound", "The same reach-around placement, a different mod.", "call", 12],
       ["better-bridging", "Better Bridging", "Bridging aid with a placement brace and a cycle key.", "call", 10],
       ["reach-behind", "Reach Behind", "Lets you click through decorations to the block behind them.", "call", 6],
-      ["pro-placer", "Pro Placer", "Bedrock-style fast and accurate block placement and breaking.", "call", 8]
+      ["pro-placer", "Pro Placer", "Bedrock-style fast and accurate block placement and breaking.", "call", 8],
+      ["better-crosshair-indicator", "Better Crosshair Indicator", "Changes the crosshair when your target is inside reach. It is telling you when to click.", "call", 6],
+      ["convenient-hitboxes", "Convenient Hitboxes", "A button next to F3+B for turning entity hitboxes on and off.", "allow", 2]
     ]],
 
     ["Projectile aiming", "All four draw where a pearl or an arrow will land before you throw it. It is not an aimbot, but the mod is doing part of the aiming, so ask first.", [
@@ -574,6 +597,23 @@
       ["holo-utils", "No Fog + Fullbright", "Fullbright with fog removal. The fog half extends how far you can see outdoors.", "allow", 3],
       ["prettier-hitboxes", "Prettier Hitboxes", "Recolours the hitbox display you can already turn on with F3+B.", "allow", 2],
       ["neat", "Neat", "Health bars above mobs and players.", "allow", 2]
+    ]],
+
+    ["Information and HUD mods", "Everything here shows you something the vanilla HUD does not. Almost all of it is harmless, and all of it is listed so nobody has to guess.", [
+      ["appleskin", "AppleSkin", "Hunger and saturation values on food, and what they will restore.", "allow", 0],
+      ["wthit", "WTHIT", "Names the block or mob you are looking at, with its health and details. A Waila fork.", "allow", 2],
+      ["betterf3", "BetterF3", "Replaces the F3 debug screen with a configurable one.", "allow", 0],
+      ["status-effect-bars", "Status Effect Bars", "Duration bars on your potion effects.", "allow", 0],
+      ["advancementinfo", "AdvancementInfo", "Shows what an advancement actually requires.", "allow", 0],
+      ["coordinates-display", "Coordinates Display", "Coordinates on the HUD, with copy and share keys.", "allow", 0],
+      ["shulkerboxtooltip", "Shulker Box Tooltip", "Shows what is inside a shulker box without placing it.", "allow", 0],
+      ["armor-hud", "Armor HUD", "Your armour durability as an overlay.", "allow", 0],
+      ["detail-armor-bar", "Detail Armor Bar", "More detail in the vanilla armour bar.", "allow", 0],
+      ["raised", "Raised", "Moves the HUD around. Purely where things sit on screen.", "allow", 0],
+      ["ping-nametags", "Ping Nametags", "Everyone\'s ping in their nametag.", "allow", 0],
+      ["light-overlay", "Light Overlay", "Marks blocks where mobs can spawn. Spawn-proofing help.", "allow", 2],
+      ["mobcountmod", "MobCountMod", "Counts the entities around you, which is how you tune a farm.", "allow", 2],
+      ["bbor", "Bounding Box Outline Reloaded", "Draws structure bounds and spawn spheres through terrain. Built for farm work, and it also shows you where a stronghold or fortress is before you dig.", "call", 6]
     ]],
 
     ["Zoom", "Zoom has been around since Optifine and everyone treats it as part of the game. Use any of them.", [
